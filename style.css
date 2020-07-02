@@ -36,13 +36,13 @@ h2 {
 }
 
 .container2 {
-    background-color: black;
+    background-color: white;
     border: 3px solid rgb(54, 54, 255);
     height: 300px;
     margin-top: 2%;
-    margin-left: 1%;
-    margin-right: 1%;
-    color: white;
+    margin-left: 2%;
+    margin-right: 2%;
+    color: black;
 }
 
 .container3 {
@@ -50,10 +50,10 @@ h2 {
     margin-top: 1%;
     margin-left: 2%;
     margin-right: 2%;
-    color: white;
+    color: black;
 }
 .c3 {
-    background-color: black;
+    background-color: white;
     border: 3px solid rgb(54, 54, 255);
     height: 250px;
     margin-top: 1%;
