@@ -16,13 +16,14 @@
         <p>•˚ City Weather •˚</p>
     </header>
 </head>
-
+    <!-- Container for image and city search bar -->
 <body>
     <div class="container">
         <div class="col-lg-12">
             <div class="row">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter City" aria-label="Search bar" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" placeholder="Enter City" aria-label="Search bar"
+                        aria-describedby="button-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
                     </div>
@@ -48,19 +49,19 @@
         <div class="row">
             <div class="col c3">
                 Day 1 Weather
-              </div>
-              <div class="col c3">
+            </div>
+            <div class="col c3">
                 Day 2 Weather
-              </div>
-              <div class="col c3">
+            </div>
+            <div class="col c3">
                 Day 3 Weather
-              </div>
-              <div class="col c3">
+            </div>
+            <div class="col c3">
                 Day 4 Weather
-              </div>
-              <div class="col c3">
+            </div>
+            <div class="col c3">
                 Day 5 Weather
-              </div> 
+            </div>
         </div>
     </div>
 
@@ -77,11 +78,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="api.openweathermap.org/data/2.5/weather?q={city name}&appid={be5756bbc4a04e806285db783e74b576}"></script>
+    <script src="api.openweathermap.org/data/2.5/forecast?q={city name}&appid={be5756bbc4a04e806285db783e74b576}"></script>
 </body>
 
 <footer>
     <p>Author: Trevor Otterson<br>
-      <a>©Copywrite</a></p>
-  </footer>
+        <a>©Copywrite</a></p>
+</footer>
 
 </html>
