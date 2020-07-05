@@ -41,9 +41,9 @@ function gotData(data) {
     // $(".uv_index").text("UV-Index: " + data.main.uv)
 
     // $(".c3").append(data.symbol.var)
-    $(".c3").text("Today's Date: " + data.list.list[0].main.dt_txt)
-    $(".c3").text("Temperature: " + data.list.list[0].main.temp)
-    $(".c3").text("Humidity: " + data.list.list[0].main.humidity)
-    $(".c3").text("Wind Speed: " + data.list.list[0].main.wind)
+    $(".c3").text("Today's Date: " + data.list[0].main.dt_txt)
+    $(".c3").text("Temperature: " + data.list[0].main.temp)
+    $(".c3").text("Humidity: " + data.list[0].main.humidity)
+    $(".c3").text("Wind Speed: " + data.list[0].main.wind)
     // $(".c3").text("UV-Index: " + data.main.uv)
 }
