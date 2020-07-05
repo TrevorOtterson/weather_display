@@ -35,7 +35,7 @@ function gotData(data) {
     $(".current_city").text(data.name).append(", ").append(data.sys.country)
     // $(".weather_icon").text(data.weather.icon)
     $(".current_date").text("Today's Date: " + data.dt_txt)
-    $(".temp").text("Temperature: " + data.main.temp + " ˚F")
+    $(".temp").text(data.main.temp + " ˚F")
     $(".humidity").text("Humidity: " + data.main.humidity + "%")
     $(".wind_speed").text("Wind Speed: " + data.wind.speed + " MPH")
     // $(".uv_index").text("UV-Index: " + data.main.uv)

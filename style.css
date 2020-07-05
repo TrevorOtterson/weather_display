@@ -43,6 +43,7 @@ h2 {
     margin-left: 2%;
     margin-right: 2%;
     color: black;
+    padding-left: 1%;
 }
 
 .container3 {
@@ -107,20 +108,25 @@ footer {
 }
 
 .current_city {
-
+    color: gray;
+    font-size: 25pt;
 }
 .current_date {
-
+    color: gray;
+    font-size: 18pt;
 }
 
 .temp {
-
+    color: black;
+    font-size: 30pt;
 }
 
 .humidity {
-
+    color: black;
+    font-size: 20pt;
 }
 
 .wind_speed {
-
+    color: black;
+    font-size: 20pt;
 }
