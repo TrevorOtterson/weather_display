@@ -59,11 +59,11 @@ function fiveDayData(data) {
 
     // Humidity for all 5 days
     for (day = 0; day < 40; day++) {
-        $(".humidity_" + day).text(data.list[day].main.humidity + "%");
+        $(".humidity_" + day).text("Humidity: " + data.list[day].main.humidity + "%");
     }
 
     // wind speed for all 5 days
     for (day = 0; day < 40; day++) {
-        $(".wind_speed_" + day).text(data.list[day].wind.speed + " MPH");
+        $(".wind_speed_" + day).text("Wind: " + data.list[day].wind.speed + " MPH");
     }
 }

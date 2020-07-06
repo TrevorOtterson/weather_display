@@ -107,26 +107,35 @@ footer {
     border-top: 5px solid rgb(54, 54, 255);
 }
 
-.current_city {
+.current_city{
     color: gray;
     font-size: 25pt;
 }
-.current_date {
+.current_date, .current_date_1, .current_date_2, .current_date_3, .current_date_4, .current_date_5 {
     color: gray;
-    font-size: 18pt;
+    font-size: 12pt;
 }
 
-.temp {
-    color: black;
+.temp{
+    color: rgb(54, 54, 255);
     font-size: 30pt;
 }
+.temp_1, .temp_2, .temp_3, .temp_4, .temp_5 {
+    color: rgb(54, 54, 255);
+    font-size: 22pt;
+}
 
-.humidity {
+.humidity{
     color: black;
     font-size: 20pt;
 }
+.humidity_1, .humidity_2, .humidity_3, .humidity_4, .humidity_5, 
+.wind_speed_1, .wind_speed_2, .wind_speed_3, .wind_speed_4, .wind_speed_5 {
+    color: black;
+    font-size: 13pt;
+}
 
-.wind_speed {
+.wind_speed{
     color: black;
     font-size: 20pt;
 }
