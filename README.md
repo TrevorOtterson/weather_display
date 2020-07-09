@@ -1,4 +1,4 @@
-I developed this program that lets the user type any city in the world, and recieve back weather information. It displays current weather and the next 5 days. It stores the previous cities searched in the side so you can refer back to it. I used the OpenWeather API to get this data using JSON and fetch() I was able to use the API.
+I developed this program that lets the user type any city in the world, and recieve back weather information. It displays current weather and the next 5 days. It stores the previous cities searched in the side so you can refer back to it. I used the OpenWeather API to get this data using JSON and AJAX I was able to use the API.
 
 ```
 GIVEN a weather dashboard with form inputs
@@ -18,8 +18,8 @@ THEN I am presented with the last searched city forecast
 
 # Website
 
-<img src="./images/img1.png" alt="Project page screenshot" width="300"/>
-<img src="./images/img2.png" alt="Project page screenshot" width="300"/>
-<img src="./images/img3.png" alt="Project page screenshot" width="300"/>
+<img src="./assets/images/img1.png" alt="Project page screenshot" width="300"/>
+<img src="./assets/images/img2.png" alt="Project page screenshot" width="300"/>
+<img src="./assets/images/img3.png" alt="Project page screenshot" width="300"/>
 
 <a>https://trevorotterson.github.io/weather_display/</a>

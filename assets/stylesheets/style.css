@@ -17,7 +17,7 @@ header {
 }
 
 .container {
-    background-image: url(/images/search_image.jpg);
+    background-image: url(assets/images/search_image.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
