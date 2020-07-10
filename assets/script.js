@@ -6,20 +6,19 @@ var units = '&units=imperial'
 var input
 var currentLoc
 var savedLocation = []
-// var curContainer = $('container2')
-// var fiveDayCol = $('.c3')
 
 // gets api from call_weather function and creates an on click with user input
 var button = $('#button-addon2')
 $(button).click(call_weather)
 $(button).click(call_fiveDay)
 input = $('.form-control')
+
+// gets icons for the weather status
 // let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
 // let todayPic = $("icon").append($("<img>").attr("src",picURL).attr("class","card-img"));
 // fiveDaycol.append(todayPic);
 
 // calls api information including the city the user types in
-
 function initialize() {
     savedLocation = JSON.parse(localStorage.getItem("cityweather"));
         if (savedLocation) {
@@ -42,6 +41,7 @@ function initialize() {
     }
 }
 
+//saves lacation to localStorage
 function saveLoc(loc) {
     if (savedLocation === null) {
         savedLocation = [loc];
@@ -51,9 +51,9 @@ function saveLoc(loc) {
     }
     //save the new array to localStorage
     localStorage.setItem("cityweather", JSON.stringify(savedLocation));
-    // showPrevious();
 }
 
+// calls current weather api
 function call_weather() {
     var qURL = api + $(input).val() + api_key + units
     $.ajax({
@@ -64,9 +64,9 @@ function call_weather() {
         saveLoc (currentLoc)
         gotWeather (currentLoc)
     })
-    //fetch(url).then(response => response.json()).then(gotWeather)
 }
 
+// calls 5 day weather api
 function call_fiveDay() {
     var fiveURL = fiveDayApi + $(input).val() + api_key + units
     $.ajax({
@@ -77,7 +77,6 @@ function call_fiveDay() {
         saveLoc (currentLoc)
         fiveDayData (currentLoc)
     })
-    //fetch(url).then(response => response.json()).then(fiveDayData)
 }
 
 // pulls data puts into weather variable
@@ -93,6 +92,7 @@ function gotWeather(data) {
     // $(".uv_index").text("UV-Index: " + data.main.uv)
 }
 
+// pushes 5 day api to the dom
 function fiveDayData(data) {
     weather = data
     console.log(data)
