@@ -60,7 +60,7 @@ function call_weather() {
         url: qURL,
         method: "GET"
     }).then (function (response) {
-        currentLoc = response.name
+        currentLoc = response
         saveLoc (currentLoc)
         gotWeather (currentLoc)
     })
@@ -73,7 +73,7 @@ function call_fiveDay() {
         url: fiveURL,
         method: "GET"
     }).then (function (response) {
-        currentLoc = response.name
+        currentLoc = response
         saveLoc (currentLoc)
         fiveDayData (currentLoc)
     })
@@ -83,7 +83,6 @@ function call_fiveDay() {
 // pulls data puts into weather variable
 function gotWeather(data) {
     weather = data
-    call_weather()
     console.log(data)
     $(".current_city").text(data.name).append(", ").append(data.sys.country)
     // $(".weather_icon").text(data.weather.icon)
@@ -96,15 +95,17 @@ function gotWeather(data) {
 
 function fiveDayData(data) {
     weather = data
-    call_fiveDay()
     console.log(data)
+    var day = 1
     // Current date for all 5 days
-    for (day = 0; day < 40; day++) {
-        if (data.list[day].dt_txt.indexOf("12:00:00") !== -1) {
-            $(".current_date_" + day).text(data.list[day].dt_txt)
-            $(".temp_" + day).text(data.list[day].main.temp + " ˚F")
-            $(".humidity_" + day).text("Humidity: " + data.list[day].main.humidity + "%")
-            $(".wind_speed_" + day).text("Wind: " + data.list[day].wind.speed + " MPH")
+    for (i = 0; i < 40; i++) {
+        if (data.list[i].dt_txt.indexOf("3:00:00") !== -1) {
+            $(".current_date_" + day).text(data.list[i].dt_txt)
+            $(".temp_" + day).text(data.list[i].main.temp + " ˚F")
+            $(".humidity_" + day).text("Humidity: " + data.list[i].main.humidity + "%")
+            $(".wind_speed_" + day).text("Wind: " + data.list[i].wind.speed + " MPH")
+            day++
+            console.log(data.list[i])
         }
     }
 }
