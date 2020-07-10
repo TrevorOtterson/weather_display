@@ -139,3 +139,8 @@ footer {
     color: black;
     font-size: 20pt;
 }
+
+.icon {
+    width: 100px;
+    height: 100px;
+}

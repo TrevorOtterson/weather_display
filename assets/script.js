@@ -13,11 +13,6 @@ $(button).click(call_weather)
 $(button).click(call_fiveDay)
 input = $('.form-control')
 
-// gets icons for the weather status
-// let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
-// let todayPic = $("icon").append($("<img>").attr("src",picURL).attr("class","card-img"));
-// fiveDaycol.append(todayPic);
-
 // calls api information including the city the user types in
 function initialize() {
     savedLocation = JSON.parse(localStorage.getItem("cityweather"));
@@ -83,6 +78,10 @@ function call_fiveDay() {
 function gotWeather(data) {
     weather = data
     console.log(data)
+
+    // gets icon and appends to dom
+    let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
+    $("#curIcon").append($("<img>").attr("src",picURL).attr("class","card-img"));
     $(".current_city").text(data.name).append(", ").append(data.sys.country)
     // $(".weather_icon").text(data.weather.icon)
     // $(".current_date").text("Today's Date: " + data.dt_txt)
@@ -100,6 +99,9 @@ function fiveDayData(data) {
     // Current date for all 5 days
     for (i = 0; i < 40; i++) {
         if (data.list[i].dt_txt.indexOf("3:00:00") !== -1) {
+            // gets icon and appends to dom
+            let picURL = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
+            $("#icon_" + day).append($("<img>").attr("src",picURL).attr("class","card-img"));
             $(".current_date_" + day).text(data.list[i].dt_txt)
             $(".temp_" + day).text(data.list[i].main.temp + " ˚F")
             $(".humidity_" + day).text("Humidity: " + data.list[i].main.humidity + "%")
