@@ -16,7 +16,7 @@ header {
     border-bottom: 5px solid rgb(54, 54, 255);
 }
 
-.container {
+main {
     background-image: url(../images/search_image.jpg);
     background-repeat: no-repeat;
     background-position: center;
