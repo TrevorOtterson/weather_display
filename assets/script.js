@@ -33,13 +33,13 @@ input = $('.form-control')
 // calls api information including the city the user types in
 function initialize() {
     savedLocation = JSON.parse(localStorage.getItem("cityweather"));
-        if (savedLocation) {
-            //display previous location
-            currentLoc = savedLocation[savedLocation.length - 1];
-            showPrevious();
-            getCurrent(currentLoc);
-            console.log(localStorage);
-        }
+    if (savedLocation) {
+        //display previous location
+        currentLoc = savedLocation[savedLocation.length - 1];
+        showPrevious();
+        getCurrent(currentLoc);
+        console.log(localStorage);
+    }
 }
 
 //saves lacation to localStorage
@@ -73,10 +73,10 @@ function call_weather() {
     $.ajax({
         url: qURL,
         method: "GET"
-    }).then (function (response) {
+    }).then(function (response) {
         currentLoc = response
-        saveLoc (currentLoc)
-        gotWeather (currentLoc)
+        saveLoc(currentLoc)
+        gotWeather(currentLoc)
     })
 }
 
@@ -86,10 +86,10 @@ function call_fiveDay() {
     $.ajax({
         url: fiveURL,
         method: "GET"
-    }).then (function (response) {
+    }).then(function (response) {
         currentLoc = response
-        saveLoc (currentLoc)
-        fiveDayData (currentLoc)
+        saveLoc(currentLoc)
+        fiveDayData(currentLoc)
     })
 }
 
@@ -133,12 +133,11 @@ function gotWeather(data) {
 
     // gets icon and appends to dom
     let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
-    $("#curIcon").append($("<img>").attr("src",picURL).attr("class","card-img"));
+    $("#curIcon").append($("<img>").attr("src", picURL).attr("class", "card-img"));
     $(".current_city").text(data.name).append(", ").append(data.sys.country)
     $(".temp").text(data.main.temp + " ˚F")
     $(".humidity").text("Humidity: " + data.main.humidity + "%")
     $(".wind_speed").text("Wind Speed: " + data.wind.speed + " MPH")
-    // $(".uv_index").text("UV-Index: " + data.main.uv)
 }
 
 // pushes 5 day api to the dom
@@ -152,7 +151,7 @@ function fiveDayData(data) {
         if (data.list[i].dt_txt.indexOf("3:00:00") !== -1) {
             // gets icon and appends to dom
             let picURL = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
-            $("#icon_" + day).append($("<img>").attr("src",picURL).attr("class","card-img"));
+            $("#icon_" + day).append($("<img>").attr("src", picURL).attr("class", "card-img"));
             $(".current_date_" + day).text(data.list[i].dt_txt)
             $(".temp_" + day).text(data.list[i].main.temp + " ˚F")
             $(".humidity_" + day).text("Humidity: " + data.list[i].main.humidity + "%")
