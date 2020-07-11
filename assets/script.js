@@ -7,6 +7,20 @@ var input
 var currentLoc
 var savedLocation = []
 
+$("#city_button").on("click", function () {
+    event.preventDefault();
+    var cityName = $("#searchInput").val().trim()
+
+    if (cityName !== "") {
+        clearData()
+
+        currentLocation = cityName
+        saveLoc(cityName)
+        $("#searchInput").val("")
+        gotWeather(cityName)
+    }
+})
+
 // gets api from call_weather function and creates an on click with user input
 var button = $('#button-addon2')
 $(button).click(call_weather)
@@ -44,7 +58,7 @@ function localRead() {
     for (let i = 0; i < savedArray.length; i++) {
         var name = savedArray[i].name
         if (name) {
-            $("#city_list").append($('<button type="button" class="btn btn-primary"></button>').text(name))
+            $("#city_list").append($('<button type="button" class="btn btn-primary" id="city_button">').text(name))
         }
     }
 }
@@ -87,8 +101,6 @@ function gotWeather(data) {
     let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
     $("#curIcon").append($("<img>").attr("src",picURL).attr("class","card-img"));
     $(".current_city").text(data.name).append(", ").append(data.sys.country)
-    // $(".weather_icon").text(data.weather.icon)
-    // $(".current_date").text("Today's Date: " + data.dt_txt)
     $(".temp").text(data.main.temp + " ˚F")
     $(".humidity").text("Humidity: " + data.main.humidity + "%")
     $(".wind_speed").text("Wind Speed: " + data.wind.speed + " MPH")
