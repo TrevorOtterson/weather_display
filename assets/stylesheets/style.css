@@ -66,12 +66,10 @@ h2 {
 nav {
     border-bottom: 5px solid black;
 }
-
+/*
 .input-group {
-    margin-left: 35%;
-    margin-right: 35%;
-    margin-top: 15%;
 }
+*/
 
 #button-addon2 {
     color: white;
@@ -151,4 +149,5 @@ footer {
     padding-left: 4%;
     background-color: black;
     color: white;
+    height: 200px;
 }

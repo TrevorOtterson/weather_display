@@ -23,17 +23,6 @@ function initialize() {
             getCurrent(currentLoc);
             console.log(localStorage);
         }
-        //if user does not want to share location it gives this default location weather
-        else {
-            if (!navigator.geolocation) {
-                getCurrent("Myrtle Beach");
-            }
-        //asking user permission to share location
-        //if user allows app will give weather for users current location (geolocation API)
-            else {
-            navigator.geolocation.getCurrentPosition(success, initialValue);
-         }
-    }
 }
 
 //saves lacation to localStorage
@@ -46,7 +35,20 @@ function saveLoc(loc) {
     }
     //save the new array to localStorage
     localStorage.setItem("cityweather", JSON.stringify(savedLocation));
+    localRead()
 }
+
+function localRead() {
+    $("#city_list").empty()
+    var savedArray = JSON.parse(localStorage.getItem("cityweather"));
+    for (let i = 0; i < savedArray.length; i++) {
+        var name = savedArray[i].name
+        if (name) {
+            $("#city_list").append($('<button type="button" class="btn btn-primary"></button>').text(name))
+        }
+    }
+}
+localRead()
 
 // calls current weather api
 function call_weather() {
@@ -76,6 +78,8 @@ function call_fiveDay() {
 
 // pulls data puts into weather variable
 function gotWeather(data) {
+    $("#curIcon").empty()
+    $(".current_city").empty()
     weather = data
     console.log(data)
 
@@ -98,6 +102,7 @@ function fiveDayData(data) {
     var day = 1
     // Current date for all 5 days
     for (i = 0; i < 40; i++) {
+        $("#icon_" + day).empty()
         if (data.list[i].dt_txt.indexOf("3:00:00") !== -1) {
             // gets icon and appends to dom
             let picURL = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
