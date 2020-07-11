@@ -7,19 +7,22 @@ var input
 var currentLoc
 var savedLocation = []
 
-$("#city_button").on("click", function () {
-    event.preventDefault();
-    var cityName = $("#searchInput").val().trim()
+// creates on click event for previously searched cities
+// $("#city_button").on("click", function () {
+//     event.preventDefault();
+//     var cityName = $("#searchInput").val().trim()
 
-    if (cityName !== "") {
-        clearData()
+//     if (cityName !== "") {
+//         clearData()
 
-        currentLocation = cityName
-        saveLoc(cityName)
-        $("#searchInput").val("")
-        gotWeather(cityName)
-    }
-})
+//         currentLocation = cityName
+//         saveLoc(cityName)
+//         $("#searchInput").val("")
+//         gotWeather(cityName)
+//     }
+// })
+
+
 
 // gets api from call_weather function and creates an on click with user input
 var button = $('#button-addon2')
@@ -89,6 +92,37 @@ function call_fiveDay() {
         fiveDayData (currentLoc)
     })
 }
+
+// var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + api_key + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&units=inperial"
+// function call_uv() {
+// $.ajax({
+//     url: uvURL,
+//     method : "GET"
+//     }).then(function (uvresponse){
+//         var uvInfo = uvresponse.value;
+//         var bgcolor;
+
+//         if (uvInfo < 3){
+//             bgcolor = "green";
+//         }
+//         else if (uvInfo >= 3 && uvInfo <= 6){
+//             bgcolor = "yellow";
+//         }
+//         else if (uvInfo >= 6 && uvInfo <= 8){
+//             bgcolor = "orange";
+//         }
+//         else {
+//             bgcolor = "red"
+//         }
+
+//         var uvDisp = $("<p>").attr("class", "card-text").text("UV Index:");
+//         uvDisp.append($("<span>").attr("class","uvIndex").attr("style","background-color:" + bgcolor).text(uvInfo))
+//         infoBody.append(uvDisp);
+//     })
+//     cardRow.append(textDiv);
+//     fiveDayData(response.id);
+// }
+
 
 // pulls data puts into weather variable
 function gotWeather(data) {
