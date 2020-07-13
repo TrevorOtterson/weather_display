@@ -8,19 +8,19 @@ var currentLoc
 var savedLocation = []
 
 // creates on click event for previously searched cities
-// $("#city_button").on("click", function () {
-//     event.preventDefault();
-//     var cityName = $("#searchInput").val().trim()
+$("#city_button").on("click", function () {
+    event.preventDefault();
+    var cityName = $("#searchInput").val().trim()
 
-//     if (cityName !== "") {
-//         clearData()
+    if (cityName !== "") {
+        clearData()
 
-//         currentLocation = cityName
-//         saveLoc(cityName)
-//         $("#searchInput").val("")
-//         gotWeather(cityName)
-//     }
-// })
+        currentLocation = cityName
+        saveLoc(cityName)
+        $("#searchInput").val("")
+        gotWeather(cityName)
+    }
+})
 
 
 
@@ -93,36 +93,28 @@ function call_fiveDay() {
     })
 }
 
-// var uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + api_key + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&units=inperial"
-// function call_uv() {
-// $.ajax({
-//     url: uvURL,
-//     method : "GET"
-//     }).then(function (uvresponse){
-//         var uvInfo = uvresponse.value;
-//         var bgcolor;
 
-//         if (uvInfo < 3){
-//             bgcolor = "green";
-//         }
-//         else if (uvInfo >= 3 && uvInfo <= 6){
-//             bgcolor = "yellow";
-//         }
-//         else if (uvInfo >= 6 && uvInfo <= 8){
-//             bgcolor = "orange";
-//         }
-//         else {
-//             bgcolor = "red"
-//         }
-
-//         var uvDisp = $("<p>").attr("class", "card-text").text("UV Index:");
-//         uvDisp.append($("<span>").attr("class","uvIndex").attr("style","background-color:" + bgcolor).text(uvInfo))
-//         infoBody.append(uvDisp);
-//     })
-//     cardRow.append(textDiv);
-//     fiveDayData(response.id);
-// }
-
+async function call_uv(location) {
+    console.log("location object")
+    console.log(location)
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi?" + api_key + "&lat=" + location.coord.lat + "&lon=" + location.coord.lon + "&units=inperial"
+    console.log("uvURL")
+    console.log(uvURL)
+    var uv_index
+    await $.ajax({
+    url: uvURL,
+    method : "GET"
+    }).done(function (uvresponse) {
+        console.log("uvREsposne")
+        console.log(uvresponse.value)
+        uv_index = uvresponse.value;
+    }).fail(() => {
+        console.log("UV error")
+    })
+    console.log("UV")
+    console.log(uv_index)
+    return uv_index;
+}
 
 // pulls data puts into weather variable
 function gotWeather(data) {
@@ -138,6 +130,11 @@ function gotWeather(data) {
     $(".temp").text(data.main.temp + " ˚F")
     $(".humidity").text("Humidity: " + data.main.humidity + "%")
     $(".wind_speed").text("Wind Speed: " + data.wind.speed + " MPH")
+    var uv_index = call_uv(data)
+    console.log('uv_index in gotweather')
+    console.log(uv_index)
+    $(".uv_index").text(uv_index)
+
 }
 
 // pushes 5 day api to the dom
@@ -156,6 +153,7 @@ function fiveDayData(data) {
             $(".temp_" + day).text(data.list[i].main.temp + " ˚F")
             $(".humidity_" + day).text("Humidity: " + data.list[i].main.humidity + "%")
             $(".wind_speed_" + day).text("Wind: " + data.list[i].wind.speed + " MPH")
+            $(".uv_index_" + day).text(uv_index)
             day++
             console.log(data.list[i])
         }
