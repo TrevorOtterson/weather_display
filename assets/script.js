@@ -1,28 +1,26 @@
+var input
+var currentLoc
+var uv_index
 var weather
+var savedLocation = []
 var api = 'https://api.openweathermap.org/data/2.5/weather?q='
 var fiveDayApi = 'https://api.openweathermap.org/data/2.5/forecast?q='
 var api_key = '&appid=be5756bbc4a04e806285db783e74b576'
 var units = '&units=imperial'
-var input
-var currentLoc
-var savedLocation = []
 
 // creates on click event for previously searched cities
 $("#city_button").on("click", function () {
-    event.preventDefault();
-    var cityName = $("#searchInput").val().trim()
+    event.preventDefault()
+    var cityName = $(".input-group").val().trim()
 
     if (cityName !== "") {
         clearData()
-
         currentLocation = cityName
         saveLoc(cityName)
-        $("#searchInput").val("")
+        $(".input-group").val("")
         gotWeather(cityName)
     }
 })
-
-
 
 // gets api from call_weather function and creates an on click with user input
 var button = $('#button-addon2')
@@ -32,13 +30,13 @@ input = $('.form-control')
 
 // calls api information including the city the user types in
 function initialize() {
-    savedLocation = JSON.parse(localStorage.getItem("cityweather"));
+    savedLocation = JSON.parse(localStorage.getItem("cityweather"))
     if (savedLocation) {
         //display previous location
-        currentLoc = savedLocation[savedLocation.length - 1];
-        showPrevious();
-        getCurrent(currentLoc);
-        console.log(localStorage);
+        currentLoc = savedLocation[savedLocation.length - 1]
+        showPrevious()
+        getCurrent(currentLoc)
+        console.log(localStorage)
     }
 }
 
@@ -48,16 +46,16 @@ function saveLoc(loc) {
         savedLocation = [loc];
     }
     else if (savedLocation.indexOf(loc) === -1) {
-        savedLocation.push(loc);
+        savedLocation.push(loc)
     }
     //save the new array to localStorage
-    localStorage.setItem("cityweather", JSON.stringify(savedLocation));
+    localStorage.setItem("cityweather", JSON.stringify(savedLocation))
     localRead()
 }
 
 function localRead() {
     $("#city_list").empty()
-    var savedArray = JSON.parse(localStorage.getItem("cityweather"));
+    var savedArray = JSON.parse(localStorage.getItem("cityweather"))
     for (let i = 0; i < savedArray.length; i++) {
         var name = savedArray[i].name
         if (name) {
@@ -93,27 +91,41 @@ function call_fiveDay() {
     })
 }
 
-
 async function call_uv(location) {
     console.log("location object")
     console.log(location)
     var uvURL = "https://api.openweathermap.org/data/2.5/uvi?" + api_key + "&lat=" + location.coord.lat + "&lon=" + location.coord.lon + "&units=inperial"
     console.log("uvURL")
     console.log(uvURL)
-    var uv_index
+
+    if (uv_index < 3){
+        bgcolor = "green";
+    }
+    else if (uv_index >= 3 && uv_index <= 6){
+        bgcolor = "yellow";
+    }
+    else if (uv_index >= 6 && uv_index <= 8){
+        bgcolor = "orange";
+    }
+    else {
+        bgcolor = "red";
+    }
+    
     await $.ajax({
-    url: uvURL,
-    method : "GET"
+        url: uvURL,
+        method: "GET"
     }).done(function (uvresponse) {
         console.log("uvREsposne")
         console.log(uvresponse.value)
-        uv_index = uvresponse.value;
+        uv_index = uvresponse.value
+        $(".uv_index").text("UV Index: " + uv_index)
+
     }).fail(() => {
         console.log("UV error")
     })
     console.log("UV")
     console.log(uv_index)
-    return uv_index;
+    return uv_index
 }
 
 // pulls data puts into weather variable
@@ -124,8 +136,8 @@ function gotWeather(data) {
     console.log(data)
 
     // gets icon and appends to dom
-    let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
-    $("#curIcon").append($("<img>").attr("src", picURL).attr("class", "card-img"));
+    let picURL = "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png"
+    $("#curIcon").append($("<img>").attr("src", picURL).attr("class", "card-img"))
     $(".current_city").text(data.name).append(", ").append(data.sys.country)
     $(".temp").text(data.main.temp + " ˚F")
     $(".humidity").text("Humidity: " + data.main.humidity + "%")
@@ -133,8 +145,6 @@ function gotWeather(data) {
     var uv_index = call_uv(data)
     console.log('uv_index in gotweather')
     console.log(uv_index)
-    $(".uv_index").text(uv_index)
-
 }
 
 // pushes 5 day api to the dom
@@ -150,10 +160,9 @@ function fiveDayData(data) {
             let picURL = "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
             $("#icon_" + day).append($("<img>").attr("src", picURL).attr("class", "card-img"));
             $(".current_date_" + day).text(data.list[i].dt_txt)
-            $(".temp_" + day).text(data.list[i].main.temp + " ˚F")
+            $(".temp_" + day).text(data.list[i].main.temp + "˚F")
             $(".humidity_" + day).text("Humidity: " + data.list[i].main.humidity + "%")
             $(".wind_speed_" + day).text("Wind: " + data.list[i].wind.speed + " MPH")
-            $(".uv_index_" + day).text(uv_index)
             day++
             console.log(data.list[i])
         }
