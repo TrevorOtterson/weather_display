@@ -8,25 +8,25 @@ var fiveDayApi = 'https://api.openweathermap.org/data/2.5/forecast?q='
 var api_key = '&appid=be5756bbc4a04e806285db783e74b576'
 var units = '&units=imperial'
 
-// creates on click event for previously searched cities
-$("#city_button").on("click", function () {
-    event.preventDefault()
-    var cityName = $(".input-group").val().trim()
-
-    if (cityName !== "") {
-        clearData()
-        currentLocation = cityName
-        saveLoc(cityName)
-        $(".input-group").val("")
-        gotWeather(cityName)
-    }
-})
-
 // gets api from call_weather function and creates an on click with user input
 var button = $('#button-addon2')
 $(button).click(call_weather)
 $(button).click(call_fiveDay)
 input = $('.form-control')
+
+// creates on click event for previously searched cities
+$(document).on("click", ".city_button", function() {
+    event.preventDefault()
+    var cityName = $(this).text().trim()
+
+    if (cityName !== "") {
+        currentLocation = cityName
+        var i = parseInt($(this).attr('data-i'))
+        var savedArray = JSON.parse(localStorage.getItem("cityweather"))
+        gotWeather(savedArray[i])
+        fiveDayData(savedArray[i])
+    }
+})
 
 // calls api information including the city the user types in
 function initialize() {
@@ -52,14 +52,13 @@ function saveLoc(loc) {
     localStorage.setItem("cityweather", JSON.stringify(savedLocation))
     localRead()
 }
-
 function localRead() {
     $("#city_list").empty()
     var savedArray = JSON.parse(localStorage.getItem("cityweather"))
     for (let i = 0; i < savedArray.length; i++) {
         var name = savedArray[i].name
         if (name) {
-            $("#city_list").append($('<button type="button" class="btn btn-primary" id="city_button">').text(name))
+            $("#city_list").append($('<button type="button" class="btn btn-primary city_button">').text(name).attr("data-i", i))
         }
     }
 }
@@ -91,6 +90,7 @@ function call_fiveDay() {
     })
 }
 
+// calls uv index api and manipulates it to the dom
 async function call_uv(location) {
     console.log("location object")
     console.log(location)
