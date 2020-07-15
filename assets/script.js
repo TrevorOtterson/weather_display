@@ -97,19 +97,6 @@ async function call_uv(location) {
     var uvURL = "https://api.openweathermap.org/data/2.5/uvi?" + api_key + "&lat=" + location.coord.lat + "&lon=" + location.coord.lon + "&units=inperial"
     console.log("uvURL")
     console.log(uvURL)
-
-    if (uv_index < 3){
-        bgcolor = "green";
-    }
-    else if (uv_index >= 3 && uv_index <= 6){
-        bgcolor = "yellow";
-    }
-    else if (uv_index >= 6 && uv_index <= 8){
-        bgcolor = "orange";
-    }
-    else {
-        bgcolor = "red";
-    }
     
     await $.ajax({
         url: uvURL,

@@ -146,12 +146,12 @@ footer {
     margin-right: 20%;
     width: 60%;
 }
-#city_button {
+.city_button {
     background-color: black;
     color: white;
     border: none;
 }
-#city_button:hover {
+.city_button:hover {
     background-color: white;
     color: black;
 }
