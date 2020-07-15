@@ -18,8 +18,8 @@ THEN I am presented with the last searched city forecast
 
 # Website
 
-<img src="./assets/images/img1.png" alt="Project page screenshot" width="300"/>
-<img src="./assets/images/img2.png" alt="Project page screenshot" width="300"/>
-<img src="./assets/images/img3.png" alt="Project page screenshot" width="300"/>
+<img src="./assets/images/img1.png" alt="Project page" width="300"/>
+<img src="./assets/images/img2.png" alt="Project page" width="300"/>
+<img src="./assets/images/img3.png" alt="Project page" width="300"/>
 
 <a>https://trevorotterson.github.io/weather_display/</a>
